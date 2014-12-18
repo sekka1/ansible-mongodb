@@ -1,0 +1,3 @@
+---
+- name: ensure docker is installed
+  pip: name=docker-py state=present

@@ -1,0 +1,3 @@
+---
+- name: start mongo container on server
+  docker: image=mongo name=mongo1

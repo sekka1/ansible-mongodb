@@ -1,0 +1,8 @@
+---
+- hosts: vagrant
+  gather_facts: False
+  roles:
+    - defunctzombie.coreos-bootstrap
+    - docker
+    - mongo-replicate
+  sudo: yes
