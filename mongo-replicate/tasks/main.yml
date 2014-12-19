@@ -1,3 +1,12 @@
 ---
 - name: start mongo container on server
-  docker: image=mongo name=mongo1
+  docker: image={{ docker_image_mongo }} name=mongo1 volumes=/data/db
+
+- name: create administrative users
+  docker: name=mongo1 image={{ docker_image_mongo }} command="{{ item }}"
+  with_items:
+    - "mongo admin --eval 'db.createUser( {
+    user: \"siteUserAdmin\",
+    pwd: \"{{ mongo_useradmin_password }}\",
+    roles: [ { role: \"userAdminAnyDatabase\", db: \"admin\" } ]
+    });'"
